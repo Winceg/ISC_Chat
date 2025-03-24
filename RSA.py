@@ -8,11 +8,13 @@ class RSA:
         self.e = self.primeRelGen(self.phi())
         self.public_key = self.public_key_gen()
         self.private_key = self.private_key_gen()
+        """
         print(f"p = {self.p}")
         print(f"q = {self.q}")
         print(f"e = {self.e}")
         print(f"public_key = {self.public_key}")
         print(f"private_key = {self.private_key}")
+        """
 
     def phi(self):
         return (self.p - 1) * (self.q - 1)
@@ -80,8 +82,6 @@ class RSA:
         return private_key
 
     def RSAEncrypt(self, msg, public_key):
-        print(f"msg = {msg} - {type(msg)}")
-        print(f"e= {public_key[0]} - {type(public_key[0])} || n={public_key[1]} - {type(public_key[1])}")
         encrypted = msg ** public_key[0] % public_key[1]
         return encrypted
 

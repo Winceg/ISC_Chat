@@ -126,14 +126,14 @@ def RSAEncrypt(msg, key):
     n = int(key.split(",")[0].split("n=")[1])
     e = int(key.split(",")[1].split("e=")[1])
     public_key = [e, n]
+    print(f"e= {public_key[0]} - {type(public_key[0])} || n={public_key[1]} - {type(public_key[1])}")
     rsa = RSA.RSA()
 
     encrypted = bytearray()
     for c in msg:
-        print(c)
-        print(int.from_bytes(c.encode('utf-8')))
-        print(rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key))
-        encryptedInt = int.to_bytes(rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key), 4)
-        encrypted.extend(encryptedInt)
+        encrypted_int = rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key)
+        print(f"Char = {c} - Int = {int.from_bytes(c.encode('utf-8'))} - Encrypted = {encrypted_int}")
+        encrypted_byte = int.to_bytes(encrypted_int, 4)
+        encrypted.extend(encrypted_byte)
 
     return encrypted

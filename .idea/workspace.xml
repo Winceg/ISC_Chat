@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Added RSA">
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="RSA functional">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSA.py" beforeDir="false" afterPath="$PROJECT_DIR$/RSA.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_logic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RSA.py" beforeDir="false" afterPath="$PROJECT_DIR$/RSA.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742841215439</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="RSA functional">
+      <option name="closed" value="true" />
+      <created>1742857921789</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742857921789</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,6 +163,7 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Added new GUI" />
     <MESSAGE value="Added RSA" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added RSA" />
+    <MESSAGE value="RSA functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="RSA functional" />
   </component>
 </project>
