@@ -88,7 +88,6 @@ def sendQuery(query_type, cipher_type, direction, text_len):
     command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
     msg_length = len(command)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + encrypt(command, 0)
-    print(f"Sending :  {header + str(msg_length) + command}")
     print(f"Query :    {decodeMessage(message)}")
     return message
 
@@ -100,7 +99,6 @@ def sendReply(query_type, cipher_type, key, msg):
     print(len(msg))
     msg_length = len(msg)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + payload
-    # print(f"Reply :{header + query_type + str(msg_length) + payload.decode('utf-8')}")
     print(f"Sending :  {decodeMessage(message)}")
     return message
 
@@ -142,34 +140,4 @@ def vigenereEncrypt(msg, key):
 
 
 # def RSAEncrypt(msg, publicKey):
-
 #   return res
-
-"""
-## Avant :
-def vigenereEncrypt(msg, key):
-    res = ""        # De type String, qui doit être converti après
-    j = 0
-    for i in range(0, len(msg)):
-        mInt = int(msg[i].encode("utf-8").hex(), 16) - 97       # Comme on travaille avec tous les caractères, on ne doit pas décaler
-        kInt = int(key[j].encode("utf-8").hex(), 16) - 97       # Comme on travaille avec tous les caractères, on ne doit pas décaler
-        encryptedInt = ((mInt + kInt) % 26) + 97                # Comme on travaille avec tous les caractères, on ne doit pas décaler
-        encryptedString = bytes.fromhex(hex(encryptedInt)[2:]).decode('utf-8')      # Inutile
-        if (j == len(key) - 1):
-            j = 0
-        else:
-            j += 1
-        res = res + encryptedString     # Fonctionne avec des String
-    return res      # Retourne un String, doit être converti après"""
-
-###### old
-"""def sendMessage(query_type, command, cipherType, textLen, key=0):
-    header = "ISC" + query_type
-    print(header)
-    msgLength = len(command)
-    payload = encodeMessage(command)
-    message = header.encode('utf-8') + msgLength.to_bytes(2, byteorder='big') + payload
-    print(f"Sending :  {decodeMessage(message)}")
-    print(f"Sent :  {message}")
-    return message"""
-###### old
