@@ -80,6 +80,8 @@ class RSA:
         return private_key
 
     def RSAEncrypt(self, msg, public_key):
+        print(f"msg = {msg} - {type(msg)}")
+        print(f"e= {public_key[0]} - {type(public_key[0])} || n={public_key[1]} - {type(public_key[1])}")
         encrypted = msg ** public_key[0] % public_key[1]
         return encrypted
 

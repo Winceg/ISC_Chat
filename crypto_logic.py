@@ -118,19 +118,22 @@ def vigenereEncrypt(msg, key):
         else:
             j += 1
         encrypted.extend(int.to_bytes(encryptedInt,
-                                4))  # On ajoute le résultat au tableau de bytes, et on transforme de Int >> Byte, d'une longueur de 4 Bytes
+                                      4))  # On ajoute le résultat au tableau de bytes, et on transforme de Int >> Byte, d'une longueur de 4 Bytes
     return encrypted
 
 
 def RSAEncrypt(msg, key):
-    n = key.split(",")[0].split("n=")[1]
-    e = key.split(",")[1].split("e=")[1]
+    n = int(key.split(",")[0].split("n=")[1])
+    e = int(key.split(",")[1].split("e=")[1])
     public_key = [e, n]
-    rsa = RSA()
+    rsa = RSA.RSA()
 
     encrypted = bytearray()
     for c in msg:
-        encryptedInt = int.from_bytes(rsa.RSAEncrypt(c, public_key).encode('utf-8'), 4)
-        encrypted.extend()
+        print(c)
+        print(int.from_bytes(c.encode('utf-8')))
+        print(rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key))
+        encryptedInt = int.to_bytes(rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key), 4)
+        encrypted.extend(encryptedInt)
 
     return encrypted
