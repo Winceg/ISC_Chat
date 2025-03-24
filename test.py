@@ -1,0 +1,13 @@
+"""def decodeMessage(message):
+    res = ""
+    for b in message:
+        if b != b'\x00':
+            res = res + b
+        else:
+            res = res
+    return res"""
+
+a = b"ISCs\x00\x13\x00\x00\x00t\x00\x00\x00a\x00\x00\x00s\x00\x00\x00k\x00\x00\x00 \x00\x00\x00s\x00\x00\x00h\x00\x00\x00i\x00\x00\x00f\x00\x00\x00t\x00\x00\x00 \x00\x00\x00e\x00 "
+
+#print(decodeMessage(a))
+print(a.rstrip(b'\x00'))
