@@ -1,3 +1,6 @@
+import RSA
+
+
 # SNIPPET1
 def int_to_bytes_BE(intv):
     b = []
@@ -40,14 +43,6 @@ def decodeMessage(message):
         int.from_bytes(message[4:6], "big")) + " - Message: " + res
 
 
-"""
-def decodeResponse(message):
-    msg = int_to_string(message[6:].decode('utf-8'))
-    res = msg.replace('\x00', '')
-    return res
-"""
-
-
 def decodeResponse(message):
     msg = message[6:].decode('utf-8')
     res = msg.replace('\x00', '')
@@ -59,26 +54,14 @@ def decodeResponse(message):
 # 1 = shift
 # 2 = vigénère
 # 3 = RSA
-"""
-def sendMessage(direction, query_type, command="", cipher_type="none", key=0, textLen=15):
-    header = "ISC"
-    msgLength = len(command)
-    print("Command !")
-    payload = (" task " + cipherTypeString(cipher_type) + " " + direction + " " + str(textLen)).encode('utf-8')
-    message = header.encode('utf-8') + query_type.encode('utf-8') + msgLength.to_bytes(2, byteorder='big') + payload
-    print(f"Message :{decodeMessage(message)}")
-    return message
-"""
-
-
 def cipherTypeString(cipher_type):
     match cipher_type:
         case 1:
             return "shift"
         case 2:
             return "vigenere"
-        # case 3:
-        # return "rsa"
+        case 3:
+            return "RSA"
         case 0 | _:
             return "none"
 
@@ -109,22 +92,22 @@ def encrypt(command, cipher_type=0, key=0):
             return shiftEncrypt(command, key)
         case 2:
             return vigenereEncrypt(command, key)
-        # case 3:
-        # return RSAEncrypt(command, key)
+        case 3:
+            return RSAEncrypt(command, key)
         case 0 | _:
             return encodeMessage(command)
 
 
 def shiftEncrypt(msg, key):
-    res = bytearray()
+    encrypted = bytearray()
     for c in msg:
-        res.extend(int.to_bytes(int.from_bytes(c.encode('utf-8')) + int(key), 4))
-    return res
+        encrypted.extend(int.to_bytes(int.from_bytes(c.encode('utf-8')) + int(key), 4))
+    return encrypted
 
 
 ##Après :
 def vigenereEncrypt(msg, key):
-    res = bytearray()  # De type tableau de byte (bytearray), le type qui doit être envoyé au serveur
+    encrypted = bytearray()  # De type tableau de byte (bytearray), le type qui doit être envoyé au serveur
     j = 0
     for i in range(0, len(msg)):
         mInt = int(msg[i].encode("utf-8").hex(), 16)  # Caractère converti en Int
@@ -134,10 +117,20 @@ def vigenereEncrypt(msg, key):
             j = 0
         else:
             j += 1
-        res.extend(int.to_bytes(encryptedInt,
+        encrypted.extend(int.to_bytes(encryptedInt,
                                 4))  # On ajoute le résultat au tableau de bytes, et on transforme de Int >> Byte, d'une longueur de 4 Bytes
-    return res
+    return encrypted
 
 
-# def RSAEncrypt(msg, publicKey):
-#   return res
+def RSAEncrypt(msg, key):
+    n = key.split(",")[0].split("n=")[1]
+    e = key.split(",")[1].split("e=")[1]
+    public_key = [e, n]
+    rsa = RSA()
+
+    encrypted = bytearray()
+    for c in msg:
+        encryptedInt = int.from_bytes(rsa.RSAEncrypt(c, public_key).encode('utf-8'), 4)
+        encrypted.extend()
+
+    return encrypted
