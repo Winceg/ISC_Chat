@@ -66,12 +66,14 @@ def cipherTypeString(cipher_type):
             return "none"
 
 
-def sendQuery(query_type, cipher_type, direction, text_len):
+def sendQuery(query_type, cipher_type, direction, text_len, msg = ""):
     header = "ISC" + query_type
-    command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
-    msg_length = len(command)
-    message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + encrypt(command, 0)
-    print(f"Query :    {decodeMessage(message)}")
+    if query_type == "s":
+        command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
+        message = header.encode('utf-8') + len(command).to_bytes(2, byteorder='big') + encrypt(command, 0)
+        print(f"Query :    {decodeMessage(message)}")
+    elif query_type == "t":
+        message = header.encode('utf-8') + len(msg).to_bytes(2, byteorder='big') + encrypt(msg, 0)
     return message
 
 
@@ -105,7 +107,6 @@ def shiftEncrypt(msg, key):
     return encrypted
 
 
-##Après :
 def vigenereEncrypt(msg, key):
     encrypted = bytearray()  # De type tableau de byte (bytearray), le type qui doit être envoyé au serveur
     j = 0
