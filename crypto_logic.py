@@ -1,4 +1,6 @@
 import RSA
+import hashlib  # Provides access to cryptographic hash functions like SHA-256
+import os       # Used to generate secure random bytes (e.g., for the salt)
 
 
 # SNIPPET1
@@ -44,10 +46,17 @@ def decodeMessage(message):
 
 
 def decodeResponse(message):
+    res = []
+    msg = message.decode('utf-8')
+    res.append(msg[6:].replace('\x00', ''))
+    res.append(msg[3:4])
+    return res
+
+"""def decodeResponse(message):
     msg = message[6:].decode('utf-8')
     res = msg.replace('\x00', '')
     return res
-
+"""
 
 # cipherType:
 # 0 = no cipher
@@ -62,6 +71,10 @@ def cipherTypeString(cipher_type):
             return "vigenere"
         case 3:
             return "RSA"
+        case 4:
+            return "Hash"
+        case 5:
+            return "Hash - verify"
         case 0 | _:
             return "none"
 
@@ -69,7 +82,12 @@ def cipherTypeString(cipher_type):
 def sendQuery(query_type, cipher_type, direction, text_len, msg = ""):
     header = "ISC" + query_type
     if query_type == "s":
-        command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
+        if cipher_type == 4:
+            command = "task hash hash"
+        elif cipher_type == 5:
+            command = "task hash verify"
+        else:
+            command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
         message = header.encode('utf-8') + len(command).to_bytes(2, byteorder='big') + encrypt(command, 0)
         print(f"Query :    {decodeMessage(message)}")
     elif query_type == "t":
@@ -82,7 +100,10 @@ def sendReply(query_type, cipher_type, key, msg):
     payload = encrypt(msg, cipher_type, key)
     print(msg)
     print(len(msg))
-    msg_length = len(msg)
+    if cipher_type == 4:
+        msg_length = len(payload)
+    else:
+        msg_length = len(msg)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + payload
     print(f"Sending :  {decodeMessage(message)}")
     return message
@@ -96,6 +117,8 @@ def encrypt(command, cipher_type=0, key=0):
             return vigenereEncrypt(command, key)
         case 3:
             return RSAEncrypt(command, key)
+        case 4:
+            return hashEncrypt(command)
         case 0 | _:
             return encodeMessage(command)
 
@@ -138,3 +161,13 @@ def RSAEncrypt(msg, key):
         encrypted.extend(encrypted_byte)
 
     return encrypted
+
+def hashEncrypt(command):
+    salt = os.urandom(16)
+    #combined = salt + command.encode()
+    combined = command.encode()
+    hashed = hashlib.sha256(combined).hexdigest()
+    print(hashed)
+    hashed = encodeMessage(hashed)
+    print(hashed)
+    return hashed
