@@ -97,14 +97,14 @@ class ChatClient(QWidget):
         if text_len and self.get_type() == "s":  # Only proceed if text_len is not empty
             message_to_send = logic.sendQuery(self.get_type(), self.get_cipher(), self.get_direction(), text_len)
             self.ui.sendandrec.append(
-                f'You: {logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
+                f'You:\t{logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
             self.socket.sendall(message_to_send)
             threading.Thread(
                 target=self.receive_message).start()  # Start a new thread to receive response
         elif message and self.get_type() == "t":
             message_to_send = logic.sendQuery(self.get_type(), self.get_cipher(), self.get_direction(), text_len, self.get_msg())
             self.ui.sendandrec.append(
-                f'You: {logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
+                f'You:\t{logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
             self.socket.sendall(message_to_send)
             threading.Thread(
                 target=self.receive_message).start()  # Start a new thread to receive response
@@ -116,7 +116,7 @@ class ChatClient(QWidget):
         if self.get_key() or self.get_cipher() == 4:  # Only proceed if key is not empty
             message_to_send = logic.sendReply(self.get_type(), self.get_cipher(), self.get_key(), self.get_msg())
             self.ui.sendandrec.append(
-                f'You: {logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
+                f'You:\t{logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
             self.socket.sendall(message_to_send)
             threading.Thread(
                 target=self.receive_result).start()  # Start a new thread to receive response
@@ -131,14 +131,14 @@ class ChatClient(QWidget):
             if "key " in response[0]:
                 self.key = response[0].split("key ", 1)[1]
                 self.ui.keyField.setText(self.key)
-            self.ui.sendandrec.append(f'Server: {response[0]}')  # Display the received message in the chat area
+            self.ui.sendandrec.append(f'Server:  {response[0]}')  # Display the received message in the chat area
 
             response2 = self.socket.recv(1024)  # Receive up to 1024 bytes and decode from UTF-8
             if response2:
                 response2 = logic.decodeResponse(response2)
                 self.msg = response2[0]
                 self.ui.messageField.setText(self.msg)
-                self.ui.sendandrec.append(f'Server: {response2[0]}')  # Display the received message in the chat area
+                self.ui.sendandrec.append(f'Server:  {response2[0]}')  # Display the received message in the chat area
         except socket.error as e:
             print(f"Error receiving message: {e}")  # Print error message if receiving fails"""
 
@@ -153,7 +153,7 @@ class ChatClient(QWidget):
                 if "key " in response[0]:
                     self.key = response[0].split("key ", 1)[1]
                     self.ui.keyField.setText(self.key)
-                self.ui.sendandrec.append(f'Server: {response[0]}')  # Display the received message in the chat area
+                self.ui.sendandrec.append(f'Server:\t{response[0]}')  # Display the received message in the chat area
 
                 server_response = False
                 while not server_response:
@@ -163,13 +163,13 @@ class ChatClient(QWidget):
                         if response2[1] == "s":
                             self.msg = response2[0]
                             self.ui.messageField.setText(self.msg)
-                            self.ui.sendandrec.append(f'Server: {response2[0]}')  # Display the received message in the chat
+                            self.ui.sendandrec.append(f'Server:\t{response2[0]}')  # Display the received message in the chat
                             server_response = True
                         elif response2[1] == "t":
-                            self.ui.sendandrec.append(f'Message:{response2[0]}')  # Display the received message in the chat
+                            self.ui.sendandrec.append(f'Message:\t{response2[0]}')  # Display the received message in the chat
 
             elif response[1] == "t":
-                self.ui.sendandrec.append(f'Message:{response[0]}')  # Display the received message in the chat
+                self.ui.sendandrec.append(f'Message:\t{response[0]}')  # Display the received message in the chat
 
         except socket.error as e:
             print(f"Error receiving message: {e}")  # Print error message if receiving fails
@@ -184,10 +184,10 @@ class ChatClient(QWidget):
                 result = self.socket.recv(1024)  # Receive up to 1024 bytes and decode from UTF-8
                 result = logic.decodeResponse(result)
                 if result[1] == "s":
-                    self.ui.sendandrec.append(f'Server: {result[0]}')  # Display the received message in the chat area
+                    self.ui.sendandrec.append(f'Server:\t{result[0]}')  # Display the received message in the chat area
                     server_response = True
                 elif result[1] == "t":
-                    self.ui.sendandrec.append(f'Message:{result[0]}')  # Display the received message in the chat area
+                    self.ui.sendandrec.append(f'Message:\t{result[0]}')  # Display the received message in the chat area
         except socket.error as e:
             print(f"Error receiving message: {e}")  # Print error message if receiving fails
 

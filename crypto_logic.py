@@ -1,6 +1,6 @@
 import RSA
 import hashlib  # Provides access to cryptographic hash functions like SHA-256
-import os       # Used to generate secure random bytes (e.g., for the salt)
+import os  # Used to generate secure random bytes (e.g., for the salt)
 
 
 # SNIPPET1
@@ -52,11 +52,13 @@ def decodeResponse(message):
     res.append(msg[3:4])
     return res
 
+
 """def decodeResponse(message):
     msg = message[6:].decode('utf-8')
     res = msg.replace('\x00', '')
     return res
 """
+
 
 # cipherType:
 # 0 = no cipher
@@ -79,7 +81,7 @@ def cipherTypeString(cipher_type):
             return "none"
 
 
-def sendQuery(query_type, cipher_type, direction, text_len, msg = ""):
+def sendQuery(query_type, cipher_type, direction, text_len, msg=""):
     header = "ISC" + query_type
     if query_type == "s":
         if cipher_type == 4:
@@ -98,10 +100,8 @@ def sendQuery(query_type, cipher_type, direction, text_len, msg = ""):
 def sendReply(query_type, cipher_type, key, msg):
     header = "ISC" + query_type
     payload = encrypt(msg, cipher_type, key)
-    print(msg)
-    print(len(msg))
     if cipher_type == 4:
-        msg_length = len(payload)
+        msg_length = int(len(payload) / 4)
     else:
         msg_length = len(msg)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + payload
@@ -156,15 +156,15 @@ def RSAEncrypt(msg, key):
     encrypted = bytearray()
     for c in msg:
         encrypted_int = rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key)
-        print(f"Char = {c} - Int = {int.from_bytes(c.encode('utf-8'))} - Encrypted = {encrypted_int}")
         encrypted_byte = int.to_bytes(encrypted_int, 4)
         encrypted.extend(encrypted_byte)
 
     return encrypted
 
+
 def hashEncrypt(command):
     salt = os.urandom(16)
-    #combined = salt + command.encode()
+    # combined = salt + command.encode()
     combined = command.encode()
     hashed = hashlib.sha256(combined).hexdigest()
     print(hashed)
