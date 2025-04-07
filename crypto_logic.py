@@ -1,4 +1,5 @@
 import RSA
+import DH
 import hashlib  # Provides access to cryptographic hash functions like SHA-256
 import os  # Used to generate secure random bytes (e.g., for the salt)
 
@@ -38,7 +39,6 @@ def encodeMessage(message):
 # 0 = encode
 # 1 = decode
 def decodeMessage(message):
-    # msg = message[6:].decode('utf-8')
     msg = int_to_string(message[6:])
     res = msg.replace('\x00', '')
     return "Header: " + message[:4].decode('utf-8') + " - Message length: " + str(
@@ -53,18 +53,6 @@ def decodeResponse(message):
     return res
 
 
-"""def decodeResponse(message):
-    msg = message[6:].decode('utf-8')
-    res = msg.replace('\x00', '')
-    return res
-"""
-
-
-# cipherType:
-# 0 = no cipher
-# 1 = shift
-# 2 = vigénère
-# 3 = RSA
 def cipherTypeString(cipher_type):
     match cipher_type:
         case 1:
@@ -77,6 +65,8 @@ def cipherTypeString(cipher_type):
             return "Hash"
         case 5:
             return "Hash - verify"
+        case 6:
+            return "DH half key"
         case 0 | _:
             return "none"
 
@@ -84,12 +74,15 @@ def cipherTypeString(cipher_type):
 def sendQuery(query_type, cipher_type, direction, text_len, msg=""):
     header = "ISC" + query_type
     if query_type == "s":
-        if cipher_type == 4:
-            command = "task hash hash"
-        elif cipher_type == 5:
-            command = "task hash verify"
-        else:
-            command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
+        match cipher_type:
+            case 4:
+                command = "task hash hash"
+            case 5:
+                command = "task hash verify"
+            case 6:
+                command = "task DifHel"
+            case _:
+                command = "task " + cipherTypeString(cipher_type) + " " + direction + " " + str(text_len)
         message = header.encode('utf-8') + len(command).to_bytes(2, byteorder='big') + encrypt(command, 0)
         print(f"Query :    {decodeMessage(message)}")
     elif query_type == "t":
@@ -100,10 +93,11 @@ def sendQuery(query_type, cipher_type, direction, text_len, msg=""):
 def sendReply(query_type, cipher_type, key, msg):
     header = "ISC" + query_type
     payload = encrypt(msg, cipher_type, key)
-    if cipher_type == 4:
-        msg_length = int(len(payload) / 4)
-    else:
-        msg_length = len(msg)
+    match cipher_type:
+        case 4:
+            msg_length = int(len(payload) / 4)
+        case _:
+            msg_length = len(msg)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + payload
     print(f"Sending :  {decodeMessage(message)}")
     return message
@@ -119,6 +113,14 @@ def encrypt(command, cipher_type=0, key=0):
             return RSAEncrypt(command, key)
         case 4:
             return hashEncrypt(command)
+        case 5:
+            return encodeMessage("hash_verify")
+        case 6:
+            dh = DH.DifHel()
+            if not command:
+                return dh.dh_half_key(key)
+            else:
+                return dh.dh_encrypt(key)
         case 0 | _:
             return encodeMessage(command)
 
@@ -150,7 +152,7 @@ def RSAEncrypt(msg, key):
     n = int(key.split(",")[0].split("n=")[1])
     e = int(key.split(",")[1].split("e=")[1])
     public_key = [e, n]
-    print(f"e= {public_key[0]} - {type(public_key[0])} || n={public_key[1]} - {type(public_key[1])}")
+    print(f"e= {public_key[0]} || n={public_key[1]}")
     rsa = RSA.RSA()
 
     encrypted = bytearray()
@@ -158,13 +160,12 @@ def RSAEncrypt(msg, key):
         encrypted_int = rsa.RSAEncrypt(int.from_bytes(c.encode('utf-8')), public_key)
         encrypted_byte = int.to_bytes(encrypted_int, 4)
         encrypted.extend(encrypted_byte)
+        print(f"e= {public_key[0]} || n={public_key[1]} || c= {c} || encrypted c= {encrypted_int}")
 
     return encrypted
 
 
 def hashEncrypt(command):
-    salt = os.urandom(16)
-    # combined = salt + command.encode()
     combined = command.encode()
     hashed = hashlib.sha256(combined).hexdigest()
     print(hashed)

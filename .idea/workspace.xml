@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Modified GUI">
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Just to be sure">
+      <change afterPath="$PROJECT_DIR$/DH.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PrimeStuff.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSA.py" beforeDir="false" afterPath="$PROJECT_DIR$/RSA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypto_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_logic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743430814521</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Just to be sure">
+      <option name="closed" value="true" />
+      <created>1744028496991</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744028496991</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +212,7 @@
     <MESSAGE value="Added plain text message broadcast" />
     <MESSAGE value="Added hash encrypt" />
     <MESSAGE value="Modified GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified GUI" />
+    <MESSAGE value="Just to be sure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Just to be sure" />
   </component>
 </project>

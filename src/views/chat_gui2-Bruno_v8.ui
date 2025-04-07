@@ -362,7 +362,7 @@ font: 600 9pt &quot;Segoe UI&quot;;
       <string notr="true">cypherType</string>
      </attribute>
     </widget>
-    <widget class="QRadioButton" name="dhRadioButton">
+    <widget class="QRadioButton" name="DiffieHellmanButton">
      <property name="geometry">
       <rect>
        <x>250</x>
@@ -374,9 +374,6 @@ font: 600 9pt &quot;Segoe UI&quot;;
      <property name="text">
       <string>Diffie-Hellman</string>
      </property>
-     <attribute name="buttonGroup">
-      <string notr="true">cypherType</string>
-     </attribute>
     </widget>
    </widget>
    <widget class="QLineEdit" name="text_LenField">
@@ -640,7 +637,7 @@ font: 14pt &quot;Arial&quot;;</string>
  <connections/>
  <buttongroups>
   <buttongroup name="direction"/>
-  <buttongroup name="cypherType"/>
   <buttongroup name="type"/>
+  <buttongroup name="cypherType"/>
  </buttongroups>
 </ui>
