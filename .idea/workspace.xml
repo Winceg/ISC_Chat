@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Added hash encrypt">
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Modified GUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crypto_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_logic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isc_logo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,6 +197,7 @@
     <MESSAGE value="Cleaned up a bit" />
     <MESSAGE value="Added plain text message broadcast" />
     <MESSAGE value="Added hash encrypt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added hash encrypt" />
+    <MESSAGE value="Modified GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified GUI" />
   </component>
 </project>
