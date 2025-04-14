@@ -99,7 +99,7 @@ def sendReply(query_type, cipher_type, key, msg):
             msg_length = len(msg)
             payload = encodeMessage(msg)
         case 6:
-            msg_length = len(payload.decode('utf-8'))
+            msg_length = int(len(payload.decode('utf-8'))/4)
         case _:
             msg_length = len(msg)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + payload
@@ -121,7 +121,7 @@ def encrypt(command, cipher_type=0, key=0):
             return encodeMessage("hash_verify")
         case 6:
             dh = DH.DifHel()
-            if not command:
+            if not command or command and key:
                 return dh.dh_half_key(key)
             else:
                 return dh.dh_encrypt(command)

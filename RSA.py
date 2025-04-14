@@ -2,13 +2,14 @@ import PrimeStuff as PS
 
 
 class RSA:
+    """
     def __init__(self):
         self.p = PS.PrimeStuff.primeGen()
         self.q = PS.PrimeStuff.primeGen()
         self.e = PS.PrimeStuff.primeRelGen(self.phi())
         self.public_key = self.public_key_gen()
         self.private_key = self.private_key_gen()
-
+"""
     def phi(self):
         return (self.p - 1) * (self.q - 1)
 

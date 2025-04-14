@@ -4,7 +4,7 @@ import threading  # For concurrent execution
 from PySide6.QtWidgets import QApplication, QWidget  # Core PySide6 widgets
 from PySide6.QtUiTools import QUiLoader  # For loading UI files created with Qt Designer
 import crypto_logic as logic
-
+import PrimeStuff as PS
 
 class ChatClient(QWidget):
     """
@@ -42,6 +42,7 @@ class ChatClient(QWidget):
         self.ui.sendButton.clicked.connect(self.send_message)  # Connect button click to send_message method
         self.ui.replyButton.clicked.connect(self.send_reply)  # Connect button click to send_reply method
         self.ui.clearButton.clicked.connect(self.clear)  # Connect button click to clear method
+        self.ui.generatePrimeButton.clicked.connect(self.generatePrime)
         self.socket = socket.socket()  # Create a new socket object for server communication
         self.connect_to_server(self.host, self.port)  # Establish connection to the server
         print(f"Connected to: {self.host} on port {self.port}")
@@ -116,7 +117,7 @@ class ChatClient(QWidget):
         """
         Send the message entered by the user to the server and prepare to receive a response.
         """
-        if self.get_key() or self.get_cipher() == 4 or self.get_cipher() == 5:  # Only proceed if key is not empty or sending hash
+        if self.get_key() or self.get_cipher() == 4 or self.get_cipher() == 5 or self.get_cipher() == 6:  # Only proceed if key is not empty or sending hash
             message_to_send = logic.sendReply(self.get_type(), self.get_cipher(), self.get_key(), self.get_msg())
             self.ui.sendandrec.append(
                 f'You:\t{logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
@@ -185,6 +186,13 @@ class ChatClient(QWidget):
         self.socket = socket.socket()  # Create a new socket object for server communication
         self.connect_to_server(self.host, self.port)  # Establish connection to the server
         print(f"Connected to: {self.host} on port {self.port}")
+
+    def generatePrime(self):
+        p = int(self.get_msg().split(",")[0])
+        g = int(self.get_msg().split(",")[1])
+        e = PS.PrimeStuff.primeGen()
+        print(f"e: {e}")
+        self.ui.keyField.setText(str(pow(g, e, p)))
 
     def close_event(self, event):
         """

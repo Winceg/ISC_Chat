@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Hash-verify functional">
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Hash-verify functional and cleaned">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DH.py" beforeDir="false" afterPath="$PROJECT_DIR$/DH.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrimeStuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/PrimeStuff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSA.py" beforeDir="false" afterPath="$PROJECT_DIR$/RSA.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_logic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744637887875</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Hash-verify functional and cleaned">
+      <option name="closed" value="true" />
+      <created>1744639690481</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744639690481</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,6 +257,7 @@
     <MESSAGE value="Uploaded all files to GitHub" />
     <MESSAGE value="Cleaned unused commented code&#10;Work on hash-verify" />
     <MESSAGE value="Hash-verify functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hash-verify functional" />
+    <MESSAGE value="Hash-verify functional and cleaned" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hash-verify functional and cleaned" />
   </component>
 </project>

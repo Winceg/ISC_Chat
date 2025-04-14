@@ -7,7 +7,7 @@ class PrimeStuff:
     @staticmethod
     def primeGen():
         primes = [2]
-        maximum = 1000
+        maximum = 500
         for num in range(3, maximum, 2):
             is_prime = True
             square_root = sqrt(num)
@@ -25,7 +25,7 @@ class PrimeStuff:
     @staticmethod
     def primeRelGen(phi):
         primes = [2]
-        maximum = 1000
+        maximum = 500
         for num in range(3, maximum, 2):
             is_prime = True
             square_root = sqrt(num)
