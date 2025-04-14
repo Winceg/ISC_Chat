@@ -95,6 +95,9 @@ def sendReply(query_type, cipher_type, key, msg):
     match cipher_type:
         case 4:
             msg_length = int(len(payload) / 4)
+        case 5:
+            msg_length = len(msg)
+            payload = encodeMessage(msg)
         case 6:
             msg_length = len(payload.decode('utf-8'))
         case _:
@@ -169,7 +172,5 @@ def RSAEncrypt(msg, key):
 def hashEncrypt(command):
     combined = command.encode()
     hashed = hashlib.sha256(combined).hexdigest()
-    print(hashed)
     hashed = encodeMessage(hashed)
-    print(hashed)
     return hashed

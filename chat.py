@@ -116,7 +116,7 @@ class ChatClient(QWidget):
         """
         Send the message entered by the user to the server and prepare to receive a response.
         """
-        if self.get_key() or self.get_cipher() == 4:  # Only proceed if key is not empty or sending hash
+        if self.get_key() or self.get_cipher() == 4 or self.get_cipher() == 5:  # Only proceed if key is not empty or sending hash
             message_to_send = logic.sendReply(self.get_type(), self.get_cipher(), self.get_key(), self.get_msg())
             self.ui.sendandrec.append(
                 f'You:\t{logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
@@ -144,12 +144,17 @@ class ChatClient(QWidget):
                         response2 = logic.decodeResponse(response2)
                         if response2[1] == "s":
                             self.msg = response2[0]
-                            print(self.msg.split("ISC")[0])
                             if self.get_cipher() == 5:
                                 text = self.msg.split("ISCs@")[0]
                                 hash = self.msg.split("ISCs@")[1]
-                                if logic.hashEncrypt(text) == hash:
-                                    print("ok")
+                                c_hash = f"{logic.decodeResponse(logic.hashEncrypt(text))[1]}{logic.decodeResponse(logic.hashEncrypt(text))[0]}"
+                                print(f"received text:   {text}")
+                                print(f"received hash:   {hash}")
+                                print(f"calculated hash: {c_hash}")
+                                if c_hash == hash:
+                                    self.msg = "True"
+                                else:
+                                    self.msg = "False"
                             self.ui.messageField.setText(self.msg)
                             self.ui.sendandrec.append(
                                 f'Server:\t{response2[0]}')  # Display the received message in the chat
