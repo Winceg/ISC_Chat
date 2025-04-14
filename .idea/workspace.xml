@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Partial mplementation of Diffie-Hellmann">
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Uploaded all files to GitHub">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DH.py" beforeDir="false" afterPath="$PROJECT_DIR$/DH.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSA.py" beforeDir="false" afterPath="$PROJECT_DIR$/RSA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypto_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_logic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_chat_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_chat_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744036886252</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Uploaded all files to GitHub">
+      <option name="closed" value="true" />
+      <created>1744631747153</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744631747153</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,6 +230,7 @@
     <MESSAGE value="Modified GUI" />
     <MESSAGE value="Just to be sure" />
     <MESSAGE value="Partial mplementation of Diffie-Hellmann" />
-    <option name="LAST_COMMIT_MESSAGE" value="Partial mplementation of Diffie-Hellmann" />
+    <MESSAGE value="Uploaded all files to GitHub" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uploaded all files to GitHub" />
   </component>
 </project>

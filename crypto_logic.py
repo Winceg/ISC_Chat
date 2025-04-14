@@ -1,7 +1,6 @@
 import RSA
 import DH
 import hashlib  # Provides access to cryptographic hash functions like SHA-256
-import os  # Used to generate secure random bytes (e.g., for the salt)
 
 
 # SNIPPET1
@@ -96,6 +95,8 @@ def sendReply(query_type, cipher_type, key, msg):
     match cipher_type:
         case 4:
             msg_length = int(len(payload) / 4)
+        case 6:
+            msg_length = len(payload.decode('utf-8'))
         case _:
             msg_length = len(msg)
     message = header.encode('utf-8') + msg_length.to_bytes(2, byteorder='big') + payload
@@ -120,7 +121,7 @@ def encrypt(command, cipher_type=0, key=0):
             if not command:
                 return dh.dh_half_key(key)
             else:
-                return dh.dh_encrypt(key)
+                return dh.dh_encrypt(command)
         case 0 | _:
             return encodeMessage(command)
 

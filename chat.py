@@ -144,6 +144,12 @@ class ChatClient(QWidget):
                         response2 = logic.decodeResponse(response2)
                         if response2[1] == "s":
                             self.msg = response2[0]
+                            print(self.msg.split("ISC")[0])
+                            if self.get_cipher() == 5:
+                                text = self.msg.split("ISCs@")[0]
+                                hash = self.msg.split("ISCs@")[1]
+                                if logic.hashEncrypt(text) == hash:
+                                    print("ok")
                             self.ui.messageField.setText(self.msg)
                             self.ui.sendandrec.append(
                                 f'Server:\t{response2[0]}')  # Display the received message in the chat
@@ -210,7 +216,3 @@ def main():
 if __name__ == "__main__":
     main()  # Run the main function when script is executed directly
 
-# questions
-# comments in line 51?
-# do we use closeEvent?
-# comment in line 80, starts?

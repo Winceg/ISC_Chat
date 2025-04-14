@@ -22,12 +22,3 @@ def start_client(host, port):
     client = ChatClient(host, port)  # Create an instance of ChatClient
     client.show()  # Show the client window
     sys.exit(app.exec())  # Start the application event loop
-
-"""
-if __name__ == "__main__":
-    server_thread = threading.Thread(target=start_server)  # Create a new thread to start the server
-    server_thread.daemon = True  # Set the thread as a daemon thread
-    server_thread.start()  # Start the server thread
-    
-    start_client()  # Start the client
-"""
