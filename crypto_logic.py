@@ -165,7 +165,6 @@ def RSAEncrypt(msg, key):
         encrypted_byte = int.to_bytes(encrypted_int, 4)
         encrypted.extend(encrypted_byte)
         print(f"e= {public_key[0]} || n={public_key[1]} || c= {c} || encrypted c= {encrypted_int}")
-
     return encrypted
 
 
@@ -174,3 +173,13 @@ def hashEncrypt(command):
     hashed = hashlib.sha256(combined).hexdigest()
     hashed = encodeMessage(hashed)
     return hashed
+
+def hashVerify(text, hash):
+    c_hash = f"{decodeResponse(hashEncrypt(text))[1]}{decodeResponse(hashEncrypt(text))[0]}"
+    print(f"received text:   {text}")
+    print(f"received hash:   {hash}")
+    print(f"calculated hash: {c_hash}")
+    if c_hash == hash:
+        return "True"
+    else:
+        return "False"

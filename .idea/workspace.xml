@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Cleaned unused commented code&#10;Work on hash-verify">
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Hash-verify functional">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto_logic.py" afterDir="false" />
@@ -197,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744636099112</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Hash-verify functional">
+      <option name="closed" value="true" />
+      <created>1744637887875</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744637887875</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,6 +244,7 @@
     <MESSAGE value="Partial mplementation of Diffie-Hellmann" />
     <MESSAGE value="Uploaded all files to GitHub" />
     <MESSAGE value="Cleaned unused commented code&#10;Work on hash-verify" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned unused commented code&#10;Work on hash-verify" />
+    <MESSAGE value="Hash-verify functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hash-verify functional" />
   </component>
 </project>

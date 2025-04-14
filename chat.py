@@ -145,16 +145,7 @@ class ChatClient(QWidget):
                         if response2[1] == "s":
                             self.msg = response2[0]
                             if self.get_cipher() == 5:
-                                text = self.msg.split("ISCs@")[0]
-                                hash = self.msg.split("ISCs@")[1]
-                                c_hash = f"{logic.decodeResponse(logic.hashEncrypt(text))[1]}{logic.decodeResponse(logic.hashEncrypt(text))[0]}"
-                                print(f"received text:   {text}")
-                                print(f"received hash:   {hash}")
-                                print(f"calculated hash: {c_hash}")
-                                if c_hash == hash:
-                                    self.msg = "True"
-                                else:
-                                    self.msg = "False"
+                                self.msg = logic.hashVerify(self.msg.split("ISCs@")[0], self.msg.split("ISCs@")[1])
                             self.ui.messageField.setText(self.msg)
                             self.ui.sendandrec.append(
                                 f'Server:\t{response2[0]}')  # Display the received message in the chat
