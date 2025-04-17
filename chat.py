@@ -5,6 +5,8 @@ from PySide6.QtWidgets import QApplication, QWidget  # Core PySide6 widgets
 from PySide6.QtUiTools import QUiLoader  # For loading UI files created with Qt Designer
 import crypto_logic as logic
 import PrimeStuff as PS
+import DH as dh
+
 
 class ChatClient(QWidget):
     """
@@ -42,7 +44,9 @@ class ChatClient(QWidget):
         self.ui.sendButton.clicked.connect(self.send_message)  # Connect button click to send_message method
         self.ui.replyButton.clicked.connect(self.send_reply)  # Connect button click to send_reply method
         self.ui.clearButton.clicked.connect(self.clear)  # Connect button click to clear method
-        self.ui.generatePrimeButton.clicked.connect(self.generatePrime)
+        self.ui.generatePrimeButton.clicked.connect(self.generateA)
+        self.ui.generateNumbersButton.clicked.connect(self.generatePG)
+        self.ui.computeSecretButton.clicked.connect(self.computeSecret)
         self.socket = socket.socket()  # Create a new socket object for server communication
         self.connect_to_server(self.host, self.port)  # Establish connection to the server
         print(f"Connected to: {self.host} on port {self.port}")
@@ -102,6 +106,14 @@ class ChatClient(QWidget):
             self.ui.sendandrec.append(
                 f'You:\t{logic.decodeMessage(message_to_send)}')  # Display user's message in the chat area
             self.socket.sendall(message_to_send)
+            if self.get_cipher() == 6:
+                self.ui.generatePrimeButton.setVisible(True)
+                self.ui.generateNumbersButton.setVisible(True)
+                self.ui.computeSecretButton.setVisible(True)
+            else:
+                self.ui.generatePrimeButton.setVisible(False)
+                self.ui.generateNumbersButton.setVisible(False)
+                self.ui.computeSecretButton.setVisible(False)
             threading.Thread(
                 target=self.receive_message).start()  # Start a new thread to receive response
         elif message and self.get_type() == "t":
@@ -187,12 +199,25 @@ class ChatClient(QWidget):
         self.connect_to_server(self.host, self.port)  # Establish connection to the server
         print(f"Connected to: {self.host} on port {self.port}")
 
-    def generatePrime(self):
+    def generatePG(self):
+        p = PS.PrimeStuff.primeGen()
+        g = PS.PrimeStuff.generate_primitive_root(p)
+        self.ui.keyField.setText(f"{p},{g}")
+
+    def generateA(self):
+        p = int(self.get_key().split(",")[0])
+        g = int(self.get_key().split(",")[1])
+        a = PS.PrimeStuff.primeGen()
+        A = str(pow(g, a, p))
+        print(f"p: {p} - g: {g} - a: {a} - A: {A}")
+        self.ui.messageField.setText(f"{p},{g},{a}")
+        self.ui.keyField.setText(A)
+
+    def computeSecret(self):
         p = int(self.get_msg().split(",")[0])
         g = int(self.get_msg().split(",")[1])
-        e = PS.PrimeStuff.primeGen()
-        print(f"e: {e}")
-        self.ui.keyField.setText(str(pow(g, e, p)))
+        a = int(self.get_msg().split(",")[2])
+        self.ui.keyField.setText(str(dh.dh_encrypt(int(self.get_key()), a, p)))
 
     def close_event(self, event):
         """
@@ -219,4 +244,3 @@ def main():
 
 if __name__ == "__main__":
     main()  # Run the main function when script is executed directly
-

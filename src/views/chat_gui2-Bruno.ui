@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>900</height>
+    <height>925</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -25,7 +25,7 @@
      <x>0</x>
      <y>0</y>
      <width>750</width>
-     <height>900</height>
+     <height>925</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -114,14 +114,17 @@ font: 14pt &quot;Arial&quot;;</string>
    <widget class="QLabel" name="author">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>870</y>
-      <width>271</width>
-      <height>16</height>
+      <x>0</x>
+      <y>900</y>
+      <width>750</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;Made with hate by Bruno and patience by Raphael 💀&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="messageField">
@@ -619,11 +622,14 @@ font: 14pt &quot;Arial&quot;;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="generatePrimeButton">
+    <property name="visible">
+   <bool>false</bool>
+</property>
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>270</x>
       <y>840</y>
-      <width>100</width>
+      <width>160</width>
       <height>40</height>
      </rect>
     </property>
@@ -639,7 +645,73 @@ border-radius: 5px;
 font: 14pt &quot;Arial&quot;;</string>
     </property>
     <property name="text">
-     <string>Gen Prime</string>
+     <string>Generate A</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>297</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>97</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="generateNumbersButton">
+    <property name="visible">
+   <bool>false</bool>
+</property>
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>840</y>
+      <width>160</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+background-color: rgba(90, 90, 90, 200);
+border: none;
+border-radius: 5px;
+font: 14pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Generate p + g</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>297</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>97</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="computeSecretButton">
+    <property name="visible">
+   <bool>false</bool>
+</property>
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>840</y>
+      <width>160</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+background-color: rgba(90, 90, 90, 200);
+border: none;
+border-radius: 5px;
+font: 14pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Compute secret</string>
     </property>
     <property name="autoRepeatDelay">
      <number>297</number>
@@ -665,13 +737,15 @@ font: 14pt &quot;Arial&quot;;</string>
    <zorder>label_6</zorder>
    <zorder>Logo</zorder>
    <zorder>generatePrimeButton</zorder>
+   <zorder>generateNumbersButton</zorder>
+   <zorder>computeSecretButton</zorder>
   </widget>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="cypherType"/>
-  <buttongroup name="type"/>
   <buttongroup name="direction"/>
+  <buttongroup name="type"/>
+  <buttongroup name="cypherType"/>
  </buttongroups>
 </ui>
