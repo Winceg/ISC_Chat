@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Worked on Diffie-Hellman (not functional yet">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DH.py" beforeDir="false" afterPath="$PROJECT_DIR$/DH.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrimeStuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/PrimeStuff.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/chat_gui2-Bruno.ui" afterDir="false" />
-    </list>
+    <list default="true" id="8b3e3328-a975-4f6a-a966-e05d657a77e3" name="Changes" comment="Diffie-Hellman fully functional" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -223,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744644989113</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Diffie-Hellman fully functional">
+      <option name="closed" value="true" />
+      <created>1744901077511</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744901077511</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +267,7 @@
     <MESSAGE value="Hash-verify functional" />
     <MESSAGE value="Hash-verify functional and cleaned" />
     <MESSAGE value="Worked on Diffie-Hellman (not functional yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on Diffie-Hellman (not functional yet" />
+    <MESSAGE value="Diffie-Hellman fully functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diffie-Hellman fully functional" />
   </component>
 </project>
